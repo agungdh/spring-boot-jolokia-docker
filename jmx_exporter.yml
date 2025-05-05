@@ -1,0 +1,5 @@
+startDelaySeconds: 0
+lowerCaseOutputName: true
+whitelistObjectNames:
+  - "java.lang:type=OperatingSystem"
+  - "java.lang:type=Memory"

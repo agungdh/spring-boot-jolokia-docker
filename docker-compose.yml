@@ -4,7 +4,7 @@ services:
     container_name: spring-jolokia
     ports:
       - "8080:8080"
-      - "8778:8778"
+      - "8088:8088"
     networks:
       - monitor-net
 

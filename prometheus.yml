@@ -2,8 +2,6 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: 'spring-jolokia'
+  - job_name: 'java-app'
     static_configs:
-      - targets: ['spring-jolokia:8778']
-    metrics_path: '/jolokia/'
-    scheme: 'http'
+      - targets: ['spring-jolokia:8088']  # Replace with your JMX Exporter endpoint
