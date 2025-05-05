@@ -8,20 +8,6 @@ services:
     networks:
       - monitor-net
 
-  jolokia-exporter:
-    image: dracoblue/jolokia-metrics-exporter:latest
-    container_name: jolokia-exporter
-    volumes:
-      - ./config.yaml:/usr/src/app/config.yaml
-    environment:
-      - JOLOKIA_URL=http://spring-jolokia:8778/jolokia
-    ports:
-      - "9430:9430"  # exposed for Prometheus
-    networks:
-      - monitor-net
-    depends_on:
-      - app
-
   prometheus:
     image: prom/prometheus
     container_name: prometheus
