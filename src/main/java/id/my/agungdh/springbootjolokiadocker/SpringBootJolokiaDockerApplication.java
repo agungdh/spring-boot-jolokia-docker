@@ -12,6 +12,7 @@ public class SpringBootJolokiaDockerApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootJolokiaDockerApplication.class, args);
     }
+
     @GetMapping
     public String hello() {
         return "Surimbim, Dududuuw...";
