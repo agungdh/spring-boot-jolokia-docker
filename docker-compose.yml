@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: spring-jolokia
+    ports:
+      - "8080:8080"
+      - "8778:8778"
+    networks:
+      - monitor-net
+
+  jolokia-exporter:
+    image: dracoblue/jolokia-metrics-exporter:latest
+    container_name: jolokia-exporter
+    environment:
+      - JOLOKIA_URL=http://spring-jolokia:8778/jolokia
+    ports:
+      - "9430:9430"  # exposed for Prometheus
+    networks:
+      - monitor-net
+    depends_on:
+      - app
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - monitor-net
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - monitor-net
+
+networks:
+  monitor-net:

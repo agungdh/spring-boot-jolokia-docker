@@ -1,0 +1,63 @@
+Untuk menghubungkan **Prometheus ke Grafana**, langkahnya sangat mudah dan biasanya cukup dilakukan sekali saja lewat antarmuka web Grafana:
+
+---
+
+## ✅ Langkah Koneksikan Prometheus ke Grafana
+
+### 1. Akses Grafana
+
+Buka browser ke:
+
+```
+http://localhost:3000
+```
+
+> Login default:
+
+* **Username**: `admin`
+* **Password**: `admin` (akan diminta ganti saat pertama kali login)
+
+---
+
+### 2. Tambah Prometheus sebagai Data Source
+
+1. Di sidebar kiri, klik **gear icon (⚙️) → Data Sources**
+2. Klik **“Add data source”**
+3. Pilih **Prometheus**
+4. Isi:
+
+   * **Name**: `Prometheus` (atau nama bebas)
+   * **URL**: `http://prometheus:9090`
+
+     > *Ini adalah nama servicenya di `docker-compose.yml`, bukan `localhost`!*
+5. Klik **Save & Test**
+
+---
+
+### 3. Cek Koneksi
+
+Kalau berhasil, kamu akan lihat pesan hijau:
+✅ `Data source is working`
+
+---
+
+### 4. Tambahkan Dashboard
+
+1. Klik **+ → Import**
+2. Masukkan ID dashboard (misal: `4701` untuk JVM Micrometer)
+3. Klik **Load**, lalu pilih data source `Prometheus`
+4. Klik **Import**
+
+---
+
+### ⚠️ Masalah Umum
+
+* ❌ **Grafana tidak bisa konek ke Prometheus**
+
+  * Pastikan mereka ada di **jaringan Docker yang sama**
+  * Di `docker-compose.yml`, semua service sudah pakai `networks: monitor-net`
+  * Jangan pakai `localhost` di URL, gunakan nama service: `http://prometheus:9090`
+
+---
+
+Kalau kamu mau, aku bisa bantu buatin file `provisioning` biar Prometheus langsung otomatis terhubung ke Grafana saat container jalan. Mau?
