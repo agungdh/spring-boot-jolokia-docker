@@ -2,7 +2,6 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: 'jolokia-app'
-    metrics_path: /metrics
+  - job_name: 'jolokia-exporter'
     static_configs:
-      - targets: ['jolokia-exporter:8080']  # Ini adalah exporter
+      - targets: ['jolokia-exporter:9430']

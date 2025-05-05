@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   app:
     build: .
@@ -13,6 +11,8 @@ services:
   jolokia-exporter:
     image: dracoblue/jolokia-metrics-exporter:latest
     container_name: jolokia-exporter
+    volumes:
+      - ./config.yaml:/usr/src/app/config.yaml
     environment:
       - JOLOKIA_URL=http://spring-jolokia:8778/jolokia
     ports:

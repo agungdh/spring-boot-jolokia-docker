@@ -1,0 +1,22 @@
+port: 9430
+jolokia_url: http://spring-jolokia:8778/jolokia
+mappings:
+  - name: heap_memory_used
+    mbean: java.lang:type=Memory
+    attribute: HeapMemoryUsage.used
+
+  - name: nonheap_memory_used
+    mbean: java.lang:type=Memory
+    attribute: NonHeapMemoryUsage.used
+
+  - name: uptime
+    mbean: java.lang:type=Runtime
+    attribute: Uptime
+
+  - name: system_load_average
+    mbean: java.lang:type=OperatingSystem
+    attribute: SystemLoadAverage
+
+  - name: thread_count
+    mbean: java.lang:type=Threading
+    attribute: ThreadCount
